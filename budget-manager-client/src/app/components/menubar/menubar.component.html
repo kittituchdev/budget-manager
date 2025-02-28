@@ -1,1 +1,27 @@
-<p>menubar works!</p>
+<div class="z-10 fixed bottom-0 left-0 w-full custom-shadow-top px-4 h-14 grid grid-cols-5">
+    <button class="h-full w-full text-neutral-300" [class]="{'text-primary': activeMenu == 'home'}"
+        (click)="menuNavigate('/home')">
+        <fa-icon [icon]="faHome"></fa-icon>
+        <div class="text-xs">Home</div>
+    </button>
+    <button class="h-full w-full text-neutral-300" [class]="{'text-primary': activeMenu == 'dashboard'}"
+        (click)="menuNavigate('/dashboard')">
+        <fa-icon [icon]="faChartPie"></fa-icon>
+        <div class="text-xs">Chart</div>
+    </button>
+    <div class="z-20 h-full w-full flex items-center justify-center">
+        <button class="bg-primary w-14 h-14 rounded-full -mt-6">
+            <fa-icon [icon]="faWallet" class="text-white text-xl"></fa-icon>
+        </button>
+    </div>
+    <button class="h-full w-full text-neutral-300" [class]="{'text-primary': activeMenu == 'history'}"
+        (click)="menuNavigate('/history')">
+        <fa-icon [icon]="faClockRotateLeft"></fa-icon>
+        <div class="text-xs">History</div>
+    </button>
+    <button class="h-full w-full text-neutral-300" [class]="{'text-primary': activeMenu == 'profile'}"
+        (click)="menuNavigate('/profile')">
+        <fa-icon [icon]="faUser"></fa-icon>
+        <div class="text-xs">Profile</div>
+    </button>
+</div>
