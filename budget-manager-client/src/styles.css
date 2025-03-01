@@ -6,5 +6,15 @@
     --color-primary: #B9B28A;
     --color-primary-light: #EBE5C2;
     --color-primary-dark: #504B38;
+}
 
+html,
+body {
+    height: 100%;
+    touch-action: manipulation;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }

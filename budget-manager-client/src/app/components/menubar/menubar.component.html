@@ -1,27 +1,100 @@
 <div class="z-10 fixed bottom-0 left-0 w-full custom-shadow-top px-4 h-14 grid grid-cols-5">
-    <button class="h-full w-full text-neutral-300" [class]="{'text-primary': activeMenu == 'home'}"
+    <button class="h-full w-full text-neutral-300" [ngClass]="{'text-primary': activeMenu == 'home'}"
         (click)="menuNavigate('/home')">
         <fa-icon [icon]="faHome"></fa-icon>
         <div class="text-xs">Home</div>
     </button>
-    <button class="h-full w-full text-neutral-300" [class]="{'text-primary': activeMenu == 'dashboard'}"
+    <button class="h-full w-full text-neutral-300" [ngClass]="{'text-primary': activeMenu == 'dashboard'}"
         (click)="menuNavigate('/dashboard')">
         <fa-icon [icon]="faChartPie"></fa-icon>
         <div class="text-xs">Chart</div>
     </button>
     <div class="z-20 h-full w-full flex items-center justify-center">
-        <button class="bg-primary w-14 h-14 rounded-full -mt-6">
+        <button class="bg-primary w-14 h-14 rounded-full -mt-6 shadow-lg" (click)="openBottomSheet()">
             <fa-icon [icon]="faWallet" class="text-white text-xl"></fa-icon>
         </button>
     </div>
-    <button class="h-full w-full text-neutral-300" [class]="{'text-primary': activeMenu == 'history'}"
+    <button class="h-full w-full text-neutral-300" [ngClass]="{'text-primary': activeMenu == 'history'}"
         (click)="menuNavigate('/history')">
         <fa-icon [icon]="faClockRotateLeft"></fa-icon>
         <div class="text-xs">History</div>
     </button>
-    <button class="h-full w-full text-neutral-300" [class]="{'text-primary': activeMenu == 'profile'}"
+    <button class="h-full w-full text-neutral-300" [ngClass]="{'text-primary': activeMenu == 'profile'}"
         (click)="menuNavigate('/profile')">
         <fa-icon [icon]="faUser"></fa-icon>
         <div class="text-xs">Profile</div>
     </button>
 </div>
+
+<ng-template #add>
+    <div class="h-[480px] w-full py-4 space-y-4">
+        <div class="text-xl text-center font-bold">
+            Transaction
+        </div>
+        <form class="w-full" [formGroup]="formGroup">
+            <div class="w-full grid grid-cols-12 gap-2">
+                <!-- Input -->
+                <div class="col-span-5">
+                    <p-select [options]="transactionConfig.type" formControlName="type" optionLabel="label"
+                        placeholder="Type" optionValue="key" class="w-full" />
+                </div>
+                <div class="col-span-7">
+                    <input type="hidden" formControlName="value" class="value" readonly />
+                    <input type="text" pInputText [(ngModel)]="transactionConfig.displayValue"
+                        [ngModelOptions]="{standalone: true}" class="value" readonly />
+                </div>
+            </div>
+            <div class="pt-4 pb-2 flex space-x-2 overflow-x-scroll no-scrollbar">
+                <!-- Category -->
+                @for (category of transactionConfig.category; track category.value) {
+                <button (click)="categoryChange(category.value)" class="category-badge"
+                    [ngClass]="{'!bg-primary !text-white': transactionConfig.currentCategory == category.value}">
+                    {{ category.label }}
+                </button>
+                }
+            </div>
+        </form>
+        <div class="grid grid-cols-3 gap-2">
+            <!-- Numpad -->
+            <button matRipple class="numpad-btn" (click)="addNumberValue('1')">
+                1
+            </button>
+            <button matRipple class="numpad-btn" (click)="addNumberValue('2')">
+                2
+            </button>
+            <button matRipple class="numpad-btn" (click)="addNumberValue('3')">
+                3
+            </button>
+            <button matRipple class="numpad-btn" (click)="addNumberValue('4')">
+                4
+            </button>
+            <button matRipple class="numpad-btn" (click)="addNumberValue('5')">
+                5
+            </button>
+            <button matRipple class="numpad-btn" (click)="addNumberValue('6')">
+                6
+            </button>
+            <button matRipple class="numpad-btn" (click)="addNumberValue('7')">
+                7
+            </button>
+            <button matRipple class="numpad-btn" (click)="addNumberValue('8')">
+                8
+            </button>
+            <button matRipple class="numpad-btn" (click)="addNumberValue('9')">
+                9
+            </button>
+            <button matRipple class="numpad-btn" (click)="addNumberValue('.')">
+                .
+            </button>
+            <button matRipple class="numpad-btn" (click)="addNumberValue('0')">
+                0
+            </button>
+            <button matRipple class="numpad-btn" (click)="removeNumberValue()">
+                <fa-icon [icon]="faDeleteLeft"></fa-icon>
+            </button>
+        </div>
+        <button matRipple class="confirm-btn w-full" (click)="submitTransaction()">
+            Confirm
+        </button>
+    </div>
+</ng-template>
