@@ -6,6 +6,18 @@
     --color-primary: #B9B28A;
     --color-primary-light: #EBE5C2;
     --color-primary-dark: #504B38;
+
+    --color-primary-50: #FAF8EB;
+    --color-primary-100: #F5F2E0;
+    --color-primary-200: #E3DDB0;
+    --color-primary-300: #EBE5C2;
+    --color-primary-400: #D0C89E;
+    --color-primary-500: #B9B28A;
+    --color-primary-600: #8F8769;
+    --color-primary-700: #504B38;
+    --color-primary-800: #3A3628;
+    --color-primary-900: #27231A;
+    --color-primary-950: #18150F;
 }
 
 html,

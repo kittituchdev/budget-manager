@@ -1,5 +1,54 @@
-<div class="relative h-full">
-    <p class="font-bold text-red-500">
-        home works!
-    </p>
+<div class="bg-gray-50 min-h-full pb-4">
+    <div class="bg-white px-4 pt-4 text-xl">
+        Hello Johnson!
+    </div>
+    <!-- Current month income and expense -->
+    <div class="px-4 h-96 bg-white pt-4">
+        <!-- Bar chart incomes by category -->
+        <div>
+
+        </div>
+        <!-- Bar chart expenses by category -->
+        <div>
+
+        </div>
+    </div>
+    <!-- Last transaction list in current month -->
+    <div class="px-4 w-full left-0 space-y-2 pt-4">
+        <div>
+            Last transactions
+        </div>
+
+        @for (transaction of transactions; track $index) {
+
+        <div class="transaction-item grid grid-cols-7">
+            <div class="col-span-5 flex items-center space-x-4">
+                <div class="h-full content-center">
+                    <div class="bg-neutral-100 w-10 h-10 rounded-full flex items-center justify-center">
+                        <fa-icon [icon]="faBurger" class="text-primary"></fa-icon>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        {{ transaction.label }}
+                    </div>
+                    <div class="text-xs text-neutral-300">
+                        {{ transaction.category }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2 text-right">
+                <div class="text-xs text-neutral-300">
+                    {{ transaction.date }}
+                </div>
+                <div class="text-lg font-bold"
+                    [class]="{'text-red-400': transaction.type == 'expense', 'text-green-400': transaction.type == 'income'}">
+                    {{ '$' + transaction.value.toLocaleString() }}
+                </div>
+            </div>
+        </div>
+
+        }
+
+    </div>
 </div>

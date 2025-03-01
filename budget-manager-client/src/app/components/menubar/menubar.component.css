@@ -9,7 +9,7 @@
 }
 
 .confirm-btn {
-    @apply bg-primary h-10 rounded-md shadow text-white;
+    @apply bg-primary h-11 rounded-md shadow text-white;
 }
 
 .category-badge {
