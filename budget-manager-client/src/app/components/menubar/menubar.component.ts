@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faWallet, faHome, faChartPie, faClockRotateLeft, faUser, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -9,6 +9,8 @@ import { filter } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatRippleModule } from '@angular/material/core';
+import { DatePickerModule } from 'primeng/datepicker';
+import { HeaderService } from '../../services/header.service';
 @Component({
   selector: 'app-menubar',
   imports: [
@@ -20,7 +22,8 @@ import { MatRippleModule } from '@angular/material/core';
     SelectModule,
     InputTextModule,
     MatRippleModule,
-    FormsModule
+    FormsModule,
+    DatePickerModule
   ],
   templateUrl: './menubar.component.html',
   styleUrl: './menubar.component.css'
@@ -43,7 +46,8 @@ export class MenubarComponent implements OnInit {
   formGroup = new FormGroup({
     type: new FormControl('', [Validators.required]),
     value: new FormControl('', [Validators.required]),
-    category: new FormControl('', [Validators.required])
+    category: new FormControl('', [Validators.required]),
+    date: new FormControl<Date>(new Date(), [Validators.required]),
   })
 
   transactionConfig = {
@@ -94,16 +98,20 @@ export class MenubarComponent implements OnInit {
   }
 
   constructor(
-    private readonly router: Router,
+    readonly router: Router,
+    readonly headerService: HeaderService
   ) { }
 
   ngOnInit(): void {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        console.log('Route changed to:', event.urlAfterRedirects);
+
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.headerService.setTitle(''); // clear page title after route change
+      } else if (event instanceof NavigationEnd) {
         this.activeMenu = this.getCurrentPath()
-      });
+      }
+    });
   }
 
   getCurrentPath(): string {
@@ -120,11 +128,15 @@ export class MenubarComponent implements OnInit {
   openBottomSheet() {
     const buttonElement = document.activeElement as HTMLElement; // Get the currently focused element
     buttonElement.blur(); // Remove focus from the button
+    console.log(new Date().toString())
     this.formGroup.patchValue({
       type: this.transactionConfig.currentType,
-      category: this.transactionConfig.currentCategory
+      category: this.transactionConfig.currentCategory,
+      date: new Date()
     }) // set default transaction type
-    return this.bottomSheet.open(this.add);
+    return this.bottomSheet.open(this.add).afterDismissed().subscribe(() => {
+      this.resetData()
+    });
   }
 
   /**
@@ -134,9 +146,8 @@ export class MenubarComponent implements OnInit {
   submitTransaction() {
     if (this.formGroup.valid) {
       console.log(this.formGroup.value);
-      // call api create transaction
+      // format request and call api create transaction
       this.bottomSheet.dismiss();
-      this.resetData();
       return {}; // transaction object
     } else {
       return null;

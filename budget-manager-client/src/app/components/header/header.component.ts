@@ -2,19 +2,15 @@ import { Component } from '@angular/core';
 import { HeaderService } from '../../services/header.service';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-header',
   imports: [],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.css'
 })
-export class ProfileComponent {
-
+export class HeaderComponent {
 
   constructor(
     readonly headerService: HeaderService
-  ) {
-    this.headerService.setTitle('Profile')
-  }
-
+  ) { }
 
 }

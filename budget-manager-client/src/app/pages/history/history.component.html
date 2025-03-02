@@ -1,1 +1,89 @@
-<p>history works!</p>
+<div class="h-full pt-4 flex flex-col">
+    <div class="px-4">
+        <div class="flex flex-col justify-between">
+            <!-- Don't display bar chart on lanscape mode -->
+            @if(currentHeight > 576) {
+            <div class="h-full pb-4">
+                <div class="w-full flex items-start justify-center">
+                    <div class="w-full space-y-2">
+
+                        <div class="space-y-1">
+                            <div>
+                                Income/Expense
+                            </div>
+                            <div class="w-full rounded-lg h-5 bg-neutral-300"></div>
+                            <div class="text-xs">
+                                income expense
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div>
+                                Summary Income
+                            </div>
+                            <div class="w-full rounded-lg h-5 bg-neutral-300"></div>
+                            <div class="text-xs">
+                                income1 income2
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div>
+                                Summary Expense
+                            </div>
+                            <div class="w-full rounded-lg h-5 bg-neutral-300"></div>
+                            <div class="text-xs">
+                                expense1 expense2 expense3
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            }
+
+            <div class="px-4 pb-4 flex items-center justify-end">
+                <p-select [options]="months" optionLabel="label" [(ngModel)]="monthSelected" placeholder="Type"
+                    optionValue="value" class="w-1/2 max-w-3xs" />
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Last transaction list in current month -->
+    <div class="px-4 w-full left-0 space-y-2 overflow-y-auto">
+
+
+        @for (transaction of transactions; track transaction; let last = $last) {
+
+        <div class="transaction-item grid grid-cols-7" [ngClass]="{'mb-4': last}">
+            <div class="col-span-5 flex items-center space-x-4">
+                <div class="h-full content-center">
+                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center">
+                        <fa-icon [icon]="faBurger" class="text-primary"></fa-icon>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        {{ transaction.label }}
+                    </div>
+                    <div class="text-xs text-neutral-300">
+                        {{ transaction.category }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2 text-right">
+                <div class="text-xs text-neutral-300">
+                    {{ transaction.date }}
+                </div>
+                <div class="text-lg font-bold"
+                    [class]="{'text-red-400': transaction.type == 'expense', 'text-green-400': transaction.type == 'income'}">
+                    {{ '$' + transaction.value.toLocaleString() }}
+                </div>
+            </div>
+        </div>
+
+        }
+
+    </div>
+</div>

@@ -22,6 +22,7 @@
 
 html,
 body {
+    @apply text-neutral-800;
     height: 100%;
     touch-action: manipulation;
 }
@@ -29,4 +30,17 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Clear shadow of input */
+.p-inputtext {
+    @apply !shadow-none;
+}
+
+.p-datepicker-input {
+    @apply !shadow-none;
+}
+
+.p-select {
+    @apply !shadow-none;
 }

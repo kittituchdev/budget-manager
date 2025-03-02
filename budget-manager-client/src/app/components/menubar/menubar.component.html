@@ -27,7 +27,7 @@
 </div>
 
 <ng-template #add>
-    <div class="h-[480px] w-full py-4 space-y-4">
+    <div class="h-[560px] w-full py-4 space-y-4">
         <div class="text-xl text-center font-bold">
             Transaction
         </div>
@@ -39,10 +39,14 @@
                         placeholder="Type" optionValue="key" class="w-full" />
                 </div>
                 <div class="col-span-7">
-                    <input type="hidden" formControlName="value" class="value" readonly />
-                    <input type="text" pInputText [(ngModel)]="transactionConfig.displayValue"
-                        [ngModelOptions]="{standalone: true}" class="value" readonly />
+                    <p-datepicker formControlName="date" [iconDisplay]="'input'" [showIcon]="true"
+                        inputId="icondisplay" />
                 </div>
+            </div>
+            <div class="pt-4 w-full">
+                <input type="hidden" formControlName="value" class="value" readonly />
+                <input type="text" pInputText [(ngModel)]="transactionConfig.displayValue"
+                    [ngModelOptions]="{standalone: true}" class="value" readonly />
             </div>
             <div class="pt-4 pb-2 flex space-x-2 overflow-x-scroll no-scrollbar">
                 <!-- Category -->

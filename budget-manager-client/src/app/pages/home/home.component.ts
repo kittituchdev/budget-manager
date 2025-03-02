@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { faBurger } from '@fortawesome/free-solid-svg-icons';
+import { HeaderService } from '../../services/header.service';
 
 @Component({
   selector: 'app-home',
   imports: [
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -66,6 +67,13 @@ export class HomeComponent {
       value: 2450
     }
   ]
+
+
+  constructor(
+    readonly headerService: HeaderService
+  ) {
+    this.headerService.setTitle('Home')
+  }
 
 
 }
