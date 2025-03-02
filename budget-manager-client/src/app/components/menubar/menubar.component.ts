@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faWallet, faHome, faChartPie, faClockRotateLeft, faUser, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
+import { faWallet, faHome, faChartPie, faClockRotateLeft, faUser, faDeleteLeft, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { SelectModule } from 'primeng/select';
 import { filter } from 'rxjs';
@@ -40,6 +40,7 @@ export class MenubarComponent implements OnInit {
   faClockRotateLeft = faClockRotateLeft;
   faUser = faUser;
   faDeleteLeft = faDeleteLeft;
+  faXMark = faXmark;
 
   activeMenu: string = '';
 
@@ -134,9 +135,13 @@ export class MenubarComponent implements OnInit {
       category: this.transactionConfig.currentCategory,
       date: new Date()
     }) // set default transaction type
-    return this.bottomSheet.open(this.add).afterDismissed().subscribe(() => {
+    return this.bottomSheet.open(this.add, { disableClose: true }).afterDismissed().subscribe(() => {
       this.resetData()
     });
+  }
+
+  closeBottomSheet() {
+    this.bottomSheet.dismiss();
   }
 
   /**

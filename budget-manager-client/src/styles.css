@@ -22,14 +22,14 @@
 
 html,
 body {
-    @apply text-neutral-800;
+    @apply text-neutral-700;
     height: 100%;
     touch-action: manipulation;
 }
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: "Prompt", sans-serif;
 }
 
 /* Clear shadow of input */
