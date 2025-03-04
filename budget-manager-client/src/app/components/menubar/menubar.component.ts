@@ -5,7 +5,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faWallet, faHome, faChartPie, faClockRotateLeft, faUser, faDeleteLeft, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { SelectModule } from 'primeng/select';
-import { filter } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatRippleModule } from '@angular/material/core';
