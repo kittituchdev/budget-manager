@@ -1,19 +1,28 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { faBurger } from '@fortawesome/free-solid-svg-icons';
+import { faRotate, faPlus, faArrowUp, faGear, faClockRotateLeft, faBurger } from '@fortawesome/free-solid-svg-icons';
 import { HeaderService } from '../../services/header.service';
+import { ChartStackedBarComponent } from '../../components/chart-stacked-bar/chart-stacked-bar.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   imports: [
+    CommonModule,
     FontAwesomeModule,
+    ChartStackedBarComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
+  faRotate = faRotate;
+  faPlus = faPlus;
+  faArrowUp = faArrowUp;
+  faClockRotateLeft = faClockRotateLeft;
+  faGear = faGear;
   faBurger = faBurger;
 
   transactions = [

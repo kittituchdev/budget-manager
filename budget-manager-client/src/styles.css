@@ -4,13 +4,13 @@
 /* https://colorhunt.co/palette/f8f3d9ebe5c2b9b28a504b38 */
 @theme {
     --color-primary: #B9B28A;
-    --color-primary-light: #EBE5C2;
+    --color-primary-light: #E3DDB0;
     --color-primary-dark: #504B38;
 
     --color-primary-50: #FAF8EB;
     --color-primary-100: #F5F2E0;
-    --color-primary-200: #E3DDB0;
-    --color-primary-300: #EBE5C2;
+    --color-primary-200: #EBE5C2;
+    --color-primary-300: #E3DDB0;
     --color-primary-400: #D0C89E;
     --color-primary-500: #B9B28A;
     --color-primary-600: #8F8769;
@@ -22,7 +22,6 @@
 
 html,
 body {
-    @apply text-neutral-700;
     height: 100%;
     touch-action: manipulation;
 }
@@ -30,6 +29,7 @@ body {
 body {
     margin: 0;
     font-family: "Prompt", sans-serif;
+    @apply text-neutral-700;
 }
 
 /* Clear shadow of input */

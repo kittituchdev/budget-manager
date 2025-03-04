@@ -11,29 +11,65 @@
                             <div>
                                 Income/Expense
                             </div>
-                            <div class="w-full rounded-lg h-5 bg-neutral-200"></div>
-                            <div class="text-xs">
-                                income expense
+                            <div class="w-full rounded h-5 overflow-hidden flex">
+                                @for (bar of incomeExpenseBar.items; track bar) {
+                                <div class="h-full w-1/2" [style.background-color]="bar.color"
+                                    [style.width.%]="bar.percentage"></div>
+                                }
+                            </div>
+                            <div class="text-xs flex space-x-2 h-4 overflow-x-auto overflow-y-hidden">
+                                @for (bar of incomeExpenseBar.items; track bar) {
+                                <div class="flex space-x-1 items-center">
+                                    <div class="w-2 h-2 rounded-full" [style.background-color]="bar.color"></div>
+                                    <div>
+                                        {{ bar.label }}
+                                    </div>
+                                </div>
+                                }
                             </div>
                         </div>
 
                         <div class="space-y-1">
                             <div>
-                                Summary Income
+                                Summary Incomes
                             </div>
-                            <div class="w-full rounded-lg h-5 bg-neutral-200"></div>
-                            <div class="text-xs">
-                                income1 income2
+                            <div class="w-full rounded h-5 overflow-hidden flex">
+                                @for (bar of incomeCategoryBar.items; track bar) {
+                                <div class="h-full w-1/2" [style.background-color]="bar.color"
+                                    [style.width.%]="bar.percentage"></div>
+                                }
+                            </div>
+                            <div class="text-xs flex space-x-2 h-4 overflow-x-auto overflow-y-hidden">
+                                @for (bar of incomeCategoryBar.items; track bar) {
+                                <div class="flex space-x-1 items-center">
+                                    <div class="w-2 h-2 rounded-full" [style.background-color]="bar.color"></div>
+                                    <div>
+                                        {{ bar.label }}
+                                    </div>
+                                </div>
+                                }
                             </div>
                         </div>
 
                         <div class="space-y-1">
                             <div>
-                                Summary Expense
+                                Summary Expenses
                             </div>
-                            <div class="w-full rounded-lg h-5 bg-neutral-200"></div>
-                            <div class="text-xs">
-                                expense1 expense2 expense3
+                            <div class="w-full rounded h-5 overflow-hidden flex">
+                                @for (bar of expenseCategoryBar.items; track bar) {
+                                <div class="h-full w-1/2" [style.background-color]="bar.color"
+                                    [style.width.%]="bar.percentage"></div>
+                                }
+                            </div>
+                            <div class="text-xs flex space-x-2 h-4 overflow-x-auto overflow-y-hidden">
+                                @for (bar of expenseCategoryBar.items; track bar) {
+                                <div class="flex space-x-1 items-center">
+                                    <div class="w-2 h-2 rounded-full" [style.background-color]="bar.color"></div>
+                                    <div>
+                                        {{ bar.label }}
+                                    </div>
+                                </div>
+                                }
                             </div>
                         </div>
 

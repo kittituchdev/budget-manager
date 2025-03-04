@@ -1,0 +1,5 @@
+@reference "../../../styles.css";
+
+.transaction-item {
+    @apply bg-neutral-50 px-4 h-16 content-center rounded-lg;
+}

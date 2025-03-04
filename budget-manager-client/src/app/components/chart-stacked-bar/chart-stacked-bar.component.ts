@@ -5,67 +5,48 @@ import { BaseChartDirective } from 'ng2-charts';
 @Component({
   selector: 'app-chart-stacked-bar',
   imports: [
-    BaseChartDirective
+    BaseChartDirective,
   ],
   templateUrl: './chart-stacked-bar.component.html',
   styleUrl: './chart-stacked-bar.component.css'
 })
 export class ChartStackedBarComponent {
-  chartOptions: ChartOptions = {
+  public barChartOptions: ChartOptions = {
     responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-    },
+    indexAxis: 'y', // Horizontal bars
     scales: {
       x: {
         stacked: true,
+        beginAtZero: true
       },
       y: {
-        stacked: true,
+        stacked: true
+      }
+    },
+    plugins: {
+      legend: {
+        display: true
       }
     }
   };
 
-  chartType: ChartType = 'bar';
-
-  chartData: ChartData<'bar'> = {
-    labels: ['January', 'February', 'March', 'April'],
+  public barChartData: ChartData<'bar'> = {
+    labels: ['Income/Expense', 'Summary Income', 'Summary Expense'],
     datasets: [
-      // Income categories
       {
-        label: 'Salary',
-        data: [5000, 5200, 5400, 5600],
-        backgroundColor: 'rgba(75, 192, 192, 0.8)'
+        label: 'Income',
+        data: [200000, 200000, 0], // Example values
+        backgroundColor: 'rgba(75, 192, 192, 0.8)',
+        borderWidth: 1
       },
       {
-        label: 'Freelance',
-        data: [1200, 1100, 1300, 1250],
-        backgroundColor: 'rgba(54, 162, 235, 0.8)'
-      },
-      {
-        label: 'Investments',
-        data: [400, 450, 420, 480],
-        backgroundColor: 'rgba(255, 206, 86, 0.8)'
-      },
-
-      // Expense categories (Negative values for expenses)
-      {
-        label: 'Rent',
-        data: [-1500, -1500, -1500, -1500],
-        backgroundColor: 'rgba(255, 99, 132, 0.8)'
-      },
-      {
-        label: 'Groceries',
-        data: [-800, -750, -900, -850],
-        backgroundColor: 'rgba(255, 159, 64, 0.8)'
-      },
-      {
-        label: 'Entertainment',
-        data: [-300, -350, -400, -380],
-        backgroundColor: 'rgba(153, 102, 255, 0.8)'
+        label: 'Expense',
+        data: [12250, 0, 12250], // Example values
+        backgroundColor: 'rgba(255, 99, 132, 0.8)',
+        borderWidth: 1
       }
     ]
   };
+
+  public barChartType: ChartType = 'bar';
 }
