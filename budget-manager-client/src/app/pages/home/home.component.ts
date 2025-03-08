@@ -10,6 +10,7 @@ import { SelectModule } from 'primeng/select';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatRippleModule } from '@angular/material/core';
 import { DatePickerModule } from 'primeng/datepicker';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ import { DatePickerModule } from 'primeng/datepicker';
     InputTextModule,
     MatRippleModule,
     FormsModule,
-    DatePickerModule
+    DatePickerModule,
+    RouterModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -160,7 +162,8 @@ export class HomeComponent {
   }
 
   constructor(
-    readonly headerService: HeaderService
+    readonly headerService: HeaderService,
+    readonly router: Router
   ) {
     this.headerService.setTitle('Home')
   }
@@ -242,6 +245,10 @@ export class HomeComponent {
   categoryChange(category: string) {
     this.formGroup.patchValue({ category: category })
     this.transactionConfig.currentCategory = category;
+  }
+
+  goToHistoryPage() {
+    this.router.navigate(['history']);
   }
 
 

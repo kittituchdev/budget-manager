@@ -58,21 +58,14 @@
                 </div>
             </div>
             <div class="text-center space-y-2">
-                <button class="rounded-full w-14 h-1w-14 aspect-square border border-neutral-500">
-                    <fa-icon [icon]="faClockRotateLeft" class="text-xl text-neutral-500"></fa-icon>
+                <button class="rounded-full w-14 h-1w-14 aspect-square border border-neutral-500"
+                    (click)="goToHistoryPage()">
+                    <fa-icon [icon]=" faClockRotateLeft" class="text-xl text-neutral-500"></fa-icon>
                 </button>
                 <div class="text-xs text-neutral-500">
                     History
                 </div>
             </div>
-            <!-- <div class="text-center space-y-2">
-                <button class="rounded-full w-14 h-1w-14 aspect-square border border-neutral-500">
-                    <fa-icon [icon]="faGear" class="text-xl text-neutral-500"></fa-icon>
-                </button>
-                <div class="text-xs text-neutral-500">
-                    Setting
-                </div>
-            </div> -->
         </div>
 
         <!-- Recent Transactions -->
